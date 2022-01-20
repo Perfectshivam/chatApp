@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { db, auth } from '../firebase'
 import SendMessage from './SendMessage'
 import Button from '@mui/material/Button';
+import styles from "../styles/chatbox.module.css";
 
 
 function Message() {
@@ -14,17 +15,16 @@ function Message() {
     }, [])
     return (
         <div>
-            <div style={{
-            display: 'flex', justifyContent: 'center', position: 'fixed', width: '100%', backgroundColor: '#FAFAFA', top: 0, borderBottom: 'solid 1px lightgray', zIndex: '10'
-        }}>
-            <Button style={{ padding: '20px', fontSize: '15px', borderRadius: '0', fontWeight: '600' }} onClick={() => auth.signOut()}>Sign Out</Button>
+            <div className={styles.msgdiv}>
+            <Button className={styles.signOutButton}
+             onClick={() => auth.signOut()}>Sign Out</Button>
         </div>
-            <div className="msgs">
+            <div className={styles.msgs}>
                 {messages.map(({ id, text, photoURL, uid }) => (
                     <div>
                         <div key={id} className={`msg ${uid === auth.currentUser.uid ? 'sent' : 'received'}`}>
-                            <img src={photoURL} alt="" />
-                            <p>{text}</p>
+                            <img className={styles.imgchat} src={photoURL} alt="" />
+                            <div className={styles.pchat}>{text}</div>
                         </div>
                     </div>
                 ))}

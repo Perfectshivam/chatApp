@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { db, auth } from '../firebase'
-// import firebase from 'firebase'
 import { Input, Button } from '@material-ui/core'
 
 
@@ -15,7 +14,6 @@ function SendMessage({ scroll }) {
             text: msg,
             photoURL,
             uid,
-            // createdAt: firebase.firestore.FieldValue.serverTimestamp()
         })
         setMsg('')
         scroll.current.scrollIntoView({ behavior: 'smooth' })
